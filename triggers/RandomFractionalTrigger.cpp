@@ -25,6 +25,7 @@
 */
 
 #include "RandomFractionalTrigger.h"
+#include "Backtrace.i"
 #include <stdlib.h>
 #include <time.h>
 #include <fstream>
@@ -65,9 +66,12 @@ void RandomFractionalTrigger::Init(xmlNodePtr initData)
 
 bool RandomFractionalTrigger::Eval(const string*, ...)
 {
-  if (rand() % 10000 < probability*10000) {
+  int rand_num = rand();
+  int prob = 100*(1/probability);
+  if (rand_num % prob == 1) {
     cout << "Good is: " << good << endl;
     good = 0;
+    Backtrace();
     return true;
   }
   good++;
