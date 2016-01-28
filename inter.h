@@ -265,7 +265,7 @@ struct reg_backup {
   if(!original_fn_ptr) { \
     original_fn_ptr = (void *(*)()) dlsym(RTLD_NEXT, #SYMBOL_NAME); \
     if(!original_fn_ptr) \
-      printf("Unable to get address for function %s\n", #SYMBOL_NAME); \
+      printf("Unable to get address for symbol %s\n", #SYMBOL_NAME); \
   } \
   \
   if (init_done) \
